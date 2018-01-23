@@ -8,7 +8,7 @@ const Notebook    = require('./Notebook.js');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const port = 80;
+const port = 8000;
 const router = express.Router();
 
 const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds111608.mlab.com:11608/notebook-search`;
