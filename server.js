@@ -21,14 +21,17 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
   
   router.get('/notebook', function(req, res) {
-    let queryProcessor = req.query.processor;
-    let ram = req.query.ram;
-    let storage = req.query.storage;
-    let price = req.query.price;
+    let query = new Object();
+    // let queryProcessor = req.query.processor;
+    // let queryRam = req.query.ram;
+    // let storage = req.query.storage;
+    // let price = req.query.price;
 
-    const query = {
-      'details.processor': queryProcessor
-    };
+    if (req.query.processor) {
+      query["details.processor"] = req.query.processor;
+    }
+
+    console.log(query)
 
     Notebook.find(query, function(err, docs){
       res.json(docs);
