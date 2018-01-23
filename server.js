@@ -20,10 +20,20 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function callback () {
   
-  router.get('/', function(req, res) {
-    Notebook.find({}, function(err, docs){
+  router.get('/notebook', function(req, res) {
+    let queryProcessor = req.query.processor;
+    let ram = req.query.ram;
+    let storage = req.query.storage;
+    let price = req.query.price;
+
+    const query = {
+      'details.processor': queryProcessor
+    };
+
+    Notebook.find(query, function(err, docs){
       res.json(docs);
     });
+
   });
 
 })
