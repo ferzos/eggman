@@ -8,7 +8,7 @@ const Notebook    = require('./Notebook.js');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const port = 8080;
+const port = 80;
 const router = express.Router();
 
 const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds111608.mlab.com:11608/notebook-search`;
@@ -20,7 +20,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function callback () {
   
-  router.get('/notebook', function(req, res) {
+  router.get('/notebooks', function(req, res) {
     let query = new Object();
     // let queryProcessor = req.query.processor;
     // let queryRam = req.query.ram;
