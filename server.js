@@ -42,6 +42,6 @@ db.once('open', function callback () {
 })
 
 app.use('/api', router);
-app.listen(port);
+app.listen(port, () => {});
 
 console.log(`Eggman serve on port ${port}`);
