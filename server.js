@@ -35,10 +35,28 @@ db.once('open', function callback () {
       query["details.ram"] = req.query.ram;
     }
 
+    if (req.query.storage) {
+      query["details.storage"] = req.query.storage;
+    }
+
+    if (req.query.brand) {
+      query["brand"] = req.query.brand;
+    }
+
+    if (req.query.maxPrice) {
+      query["price"] = { $lte: parseInt(req.query.maxPrice) }
+    }
+
     console.log(query)
 
     Notebook.find(query, function(err, docs){
       res.json(docs);
+    });
+  });
+
+  router.get('/brand', function(req, res) {
+    Notebook.find().distinct('brand', function(error, brands) {
+      res.json(brands);
     });
   });
 
