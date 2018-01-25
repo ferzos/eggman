@@ -1,3 +1,5 @@
+image: node:8
+
 variables:
   HEROKU_API_KEY: "264cda71-0748-4e41-b2c8-244451658863"
   HEROKU_APP_NAME: "eggman"
@@ -6,6 +8,10 @@ variables:
 before_script:
   - git config user.email "ferdifenrir@gmail.com"
   - git config user.name "ferzos"
+
+cache:
+  paths:
+    - node_modules/
 
 stages:
   - deploy
