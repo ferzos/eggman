@@ -20,12 +20,12 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function callback () {
   
+  router.get('/ping', function(req,res) {
+    res.json('pong');
+  });
+
   router.get('/notebooks', function(req, res) {
     let query = new Object();
-    // let queryProcessor = req.query.processor;
-    // let queryRam = req.query.ram;
-    // let storage = req.query.storage;
-    // let price = req.query.price;
 
     if (req.query.processor) {
       query["details.processor"] = req.query.processor;
@@ -36,7 +36,6 @@ db.once('open', function callback () {
     Notebook.find(query, function(err, docs){
       res.json(docs);
     });
-
   });
 
 })
