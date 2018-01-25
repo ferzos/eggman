@@ -31,6 +31,10 @@ db.once('open', function callback () {
       query["details.processor"] = req.query.processor;
     }
 
+    if (req.query.ram) {
+      query["details.ram"] = req.query.ram;
+    }
+
     console.log(query)
 
     Notebook.find(query, function(err, docs){
