@@ -6,7 +6,7 @@ variables:
 
 before_script:
   - git config user.email "ferdifenrir@gmail.com"
-  - git config user.name "ferzos"
+  - git config user.name "Ferdinand"
 
 cache:
   paths:
