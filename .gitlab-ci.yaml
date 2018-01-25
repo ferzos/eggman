@@ -1,9 +1,8 @@
-image: node:8
+image: node:8.4.0
 
 variables:
   HEROKU_API_KEY: "264cda71-0748-4e41-b2c8-244451658863"
   HEROKU_APP_NAME: "eggman"
-  BRANCH: "deploy_heroku"
 
 before_script:
   - git config user.email "ferdifenrir@gmail.com"
@@ -19,10 +18,7 @@ stages:
 deploy:
   stage: deploy
   script:
-    - git checkout -B $BRANCH
-    - git commit --allow-empty -m "Pushing to Heroku at $(date)"
-    - git branch -v
     - git pull https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
-    - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git $BRANCH:master
+    - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
   only:
     - master
