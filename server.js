@@ -26,7 +26,7 @@ db.once('open', function callback () {
 
   router.get('/notebooks', function(req, res) {
     let query = new Object();
-
+    
     if (req.query.processor) {
       query["details.processor"] = req.query.processor;
     }
@@ -44,10 +44,8 @@ db.once('open', function callback () {
     }
 
     if (req.query.maxPrice) {
-      query["price"] = { $lte: parseInt(req.query.maxPrice) }
+      query["price"] = {$lte: parseInt(req.query.maxPrice)}
     }
-
-    console.log(query)
 
     Notebook.find(query, function(err, docs){
       res.json(docs);

@@ -14,7 +14,7 @@ const NotebookSchema = new Schema({
     storage: String
   },
   brand: String,
-  price: String
+  price: Number
 });
 
 //Export model
