@@ -39,6 +39,14 @@ db.once('open', function callback () {
       query["details.storage"] = req.query.storage;
     }
 
+    if (req.query.vga) {
+      query["details.vga"] = req.query.vga;
+    }
+
+    if (req.query.ssd) {
+      query["details.ssd"] = true;
+    }
+
     if (req.query.brand) {
       query["brand"] = req.query.brand;
     }
