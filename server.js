@@ -1,12 +1,14 @@
 const express     = require('express');        // call express
 const app         = express();                 // define our app using express
 const bodyParser  = require('body-parser');
+const cors        = require('cors');
 const dotenv      = require('dotenv').config();
 const mongoose    = require('mongoose'); 
 const Notebook    = require('./Notebook.js');   
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 const port = process.env.PORT || 8080;
 const router = express.Router();
