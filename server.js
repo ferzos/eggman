@@ -68,6 +68,13 @@ db.once('open', function callback () {
     });
   });
 
+  router.get('/price', function(req, res) {
+    Notebook.find().distinct('price', function(error, prices) {
+      prices = prices.sort(function (a, b) {  return a - b;  });
+      res.json([`${prices[0]}`,`${prices[prices.length - 1]}`]);
+    });
+  });
+
 })
 
 app.use('/api', router);
