@@ -11,7 +11,9 @@ const NotebookSchema = new Schema({
     details: String,
     processor: String,
     ram: String,
-    storage: String
+    storage: String,
+    vga: String,
+    ssd: Boolean
   },
   brand: String,
   price: Number
