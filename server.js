@@ -57,7 +57,7 @@ db.once('open', function callback () {
       query["price"] = {$lte: parseInt(req.query.maxPrice)}
     }
 
-    Notebook.find(query, function(err, docs){
+    Notebook.find(query, null, { sort: {brand: 1, price: 1} }, function(err, docs) {
       res.json(docs);
     });
   });
