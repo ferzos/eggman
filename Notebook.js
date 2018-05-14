@@ -12,7 +12,10 @@ const NotebookSchema = new Schema({
     processor: String,
     ram: String,
     storage: String,
-    vga: String,
+    vga: {
+      brand: String,
+      version: String
+    },
     ssd: Boolean
   },
   brand: String,

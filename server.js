@@ -41,12 +41,16 @@ db.once('open', function callback () {
       query["details.storage"] = req.query.storage;
     }
 
-    if (req.query.vga) {
-      query["details.vga"] = req.query.vga;
+    if (req.query.vgaBrand || req.query.vgaVersion) {
+      query["details.vga.brand"] = req.query.vgaBrand;
+    }
+
+    if (req.query.vgaVersion) {
+      query["details.vga.version"] = req.query.vgaVersion;
     }
 
     if (req.query.ssd) {
-      query["details.ssd"] = true;
+      query["details.ssd"] = req.query.ssd;
     }
 
     if (req.query.brand) {
@@ -57,8 +61,10 @@ db.once('open', function callback () {
       query["price"] = {$lte: parseInt(req.query.maxPrice)}
     }
 
+    console.log(query )
     Notebook.find(query, null, { sort: {brand: 1, price: 1} }, function(err, docs) {
       res.json(docs);
+      console.log(docs.length)
     });
   });
 
@@ -71,7 +77,7 @@ db.once('open', function callback () {
   router.get('/price', function(req, res) {
     Notebook.find().distinct('price', function(error, prices) {
       prices = prices.sort(function (a, b) {  return a - b;  });
-      res.json([`${prices[0]}`,`${prices[prices.length - 1]}`]);
+      res.json({ lowest: `${prices[0]}`, highest: `${prices[prices.length - 1]}`});
     });
   });
 
