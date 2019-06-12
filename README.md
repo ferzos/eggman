@@ -16,6 +16,10 @@ node js
 touch .env (please ask author for the content)
 npm install
 ```
+### Running the app
+```
+npm start or yarn start
+```
 
 ## Built With
 
